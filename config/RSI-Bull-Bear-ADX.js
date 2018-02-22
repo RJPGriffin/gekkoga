@@ -5,8 +5,8 @@ const config = {
   gekkoConfig: {
     watch: {
       exchange: 'binance',
-      currency: 'ETH',
-      asset: 'ETC'
+      currency: 'BTC',
+      asset: 'POWR'
     },
 
     daterange: 'scan',
@@ -45,7 +45,7 @@ const config = {
   // profit || score
   // score = profit * sharpe -- feedback?
   // profit = recommended!
-  mainObjective: 'score',
+  mainObjective: 'profit',
 
   // optionally recieve and archive new all time high every new all time high
   notifications: {
