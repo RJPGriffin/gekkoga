@@ -1,7 +1,7 @@
 const randomExt = require('random-ext');
 
 const config = {
-  stratName: 'RSI_Bull_Bear_Adx',
+  stratName: 'ATR_ADX',
   gekkoConfig: {
     watch: {
       exchange: 'binance',
@@ -58,47 +58,39 @@ const config = {
     },
   },
   candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
-  //candleValues: [2, 3, 4, 5], //Really doesn't work!
+  //candleValues: [5, 6, 7, 8, 9],
   getProperties: () => ({
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
 
     /*
-    # SMA Trends
-    SMA_long = 1000
-    SMA_short = 50
+    # ATR period
+    ATR = 22
 
-    # BULL
-    BULL_RSI = 10
-    BULL_RSI_high = 80
-    BULL_RSI_low = 60
+    #ADX period
+    ADX = 22
 
-    # BEAR
-    BEAR_RSI = 15
-    BEAR_RSI_high = 50
-    BEAR_RSI_low = 20
+    # ATR Threshold
+    ATR_threshold = 30
 
-    # ADX
-    ADX = 3
-    ADX_high = 70
-    ADX_low = 50
+    #ATR Multiplers
+    BULL_Multiplier_low = 3
+    BULL_Multiplier_high = 6
+    BEAR_Multiplier_low = 3
+    BEAR_Multiplier_high = 6
+
 
     */
-    historySize: 1300, // max possible SMA_long
+    historySize: 30, // max possible SMA_long
 
-    SMA_long: randomExt.integer(27, 8) * 50, // From 1300 to 500 in steps of 50
-    SMA_short: randomExt.integer(60, 30),
+    ATR: randomExt.integer(30, 10),
+    ADX: randomExt.integer(30, 10),
 
-    BULL_RSI: randomExt.integer(13, 7),
-    BULL_RSI_high: randomExt.integer(85, 70),
-    BULL_RSI_low: randomExt.integer(65, 40),
+    ATR_threshold: randomExt.integer(60, 20),
+    BEAR_Multiplier_low: randomExt.integer(20, 1),
+    BEAR_Multiplier_high: randomExt.integer(20, 1),
+    BULL_Multiplier_low: randomExt.integer(20, 1),
+    BULL_Multiplier_high: randomExt.integer(20, 1),
 
-    BEAR_RSI: randomExt.integer(20, 10),
-    BEAR_RSI_high: randomExt.integer(60, 40),
-    BEAR_RSI_low: randomExt.integer(30, 10),
-
-    ADX: randomExt.integer(5, 2),
-    ADX_high: randomExt.integer(80, 60),
-    ADX_low: randomExt.integer(60, 40),
 
     candleSize: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)]
 
