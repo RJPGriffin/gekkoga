@@ -6,7 +6,7 @@ const config = {
     watch: {
       exchange: 'binance',
       currency: 'BTC',
-      asset: 'FUEL'
+      asset: 'XRP'
     },
 
     daterange: 'scan',
