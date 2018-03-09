@@ -1,12 +1,12 @@
 const randomExt = require('random-ext');
 
 const config = {
-  stratName: 'RSI_Bull_Bear_Adx_Stop',
+  stratName: 'RSI_BB_ADX_Peak',
   gekkoConfig: {
     watch: {
-      exchange: 'binance',
-      currency: 'BTC',
-      asset: 'NANO'
+      exchange: 'gdax',
+      currency: 'EUR',
+      asset: 'ETH'
     },
 
     daterange: 'scan',
@@ -22,8 +22,8 @@ const config = {
       'currency': 100
     },
 
-    slippage: 0.1,
-    feeTaker: 0.1,
+    slippage: 0.05,
+    feeTaker: 0.0,
     feeMaker: 0.15,
     feeUsing: 'taker', // maker || taker
 
@@ -45,7 +45,7 @@ const config = {
   // profit || score
   // score = profit * sharpe -- feedback?
   // profit = recommended!
-  mainObjective: 'score',
+  mainObjective: 'profit',
 
   // optionally recieve and archive new all time high every new all time high
   notifications: {

@@ -1,1 +1,29 @@
-{"parameters":{"historySize":30,"ATR":14,"ADX":16,"ATR_threshold":40,"BEAR_Multiplier_low":15,"BEAR_Multiplier_high":3,"BULL_Multiplier_low":9,"BULL_Multiplier_high":12,"candleSize":17},"score":-35.37655456259427,"profit":845.7602220289999,"sharpe":-0.04182811350210469,"epochNumber":18,"otherMetrics":{"balance":945.7602220289999,"profit":845.7602220289999,"sharpe":-0.04182811350210469,"market":408.01161486174357,"relativeProfit":845.7602220289999,"yearlyProfit":"1137.17031513","relativeYearlyProfit":"1137.17031513","startPrice":151.53,"endPrice":769.79,"trades":138}}
+{
+  "parameters": {
+    "historySize": 30,
+    "ATR": 16,
+    "ADX": 29,
+    "ATR_threshold": 33,
+    "BEAR_Multiplier_low": 1,
+    "BEAR_Multiplier_high": 7,
+    "BULL_Multiplier_low": 8,
+    "BULL_Multiplier_high": 9,
+    "candleSize": 60
+  },
+  "score": 346.32686770360726,
+  "profit": 1373.6384794822002,
+  "sharpe": 0.25212373770583135,
+  "epochNumber": 1548,
+  "otherMetrics": {
+    "balance": 1473.6384794822002,
+    "profit": 1373.6384794822002,
+    "sharpe": 0.25212373770583135,
+    "market": 320.33920675773777,
+    "relativeProfit": 1373.6384794822002,
+    "yearlyProfit": "1742.96460912",
+    "relativeYearlyProfit": "1742.96460912",
+    "startPrice": 151.53,
+    "endPrice": 636.94,
+    "trades": 68
+  }
+}

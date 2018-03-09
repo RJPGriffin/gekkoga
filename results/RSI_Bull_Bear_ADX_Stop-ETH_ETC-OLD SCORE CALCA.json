@@ -1,0 +1,38 @@
+{
+  "parameters": {
+    "historySize": 1300,
+    "SMA_long": 950,
+    "SMA_short": 66,
+    "BULL_RSI": 10,
+    "BULL_RSI_high": 84,
+    "BULL_RSI_low": 52,
+    "BEAR_RSI": 13,
+    "BEAR_RSI_high": 53,
+    "BEAR_RSI_low": 12,
+    "BULL_MOD_high": 5,
+    "BULL_MOD_low": -3,
+    "BEAR_MOD_high": 14,
+    "BEAR_MOD_low": -4,
+    "ADX": 2,
+    "ADX_high": 76,
+    "ADX_low": 50,
+    "Stop_Loss_Percent": 17,
+    "candleSize": 23
+  },
+  "score": 0.23662422513534562,
+  "profit": 101.24794377,
+  "sharpe": 0.23810779115952707,
+  "epochNumber": 21,
+  "otherMetrics": {
+    "balance": 201.24794377,
+    "profit": 101.24794377,
+    "sharpe": 0.23810779115952707,
+    "market": -12.380575349696485,
+    "relativeProfit": 101.24794377,
+    "yearlyProfit": "256.62399354",
+    "relativeYearlyProfit": "256.62399354",
+    "startPrice": 0.03789,
+    "endPrice": 0.033199,
+    "trades": 21
+  }
+}
