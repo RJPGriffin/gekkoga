@@ -9,13 +9,13 @@ const config = {
       asset: 'ETH'
     },
 
-    daterange: 'scan',
+    //daterange: 'scan',
 
-    // daterange: {
-    //   from: '2017-12-08 06:24:00',
-    //   to: '	2018-02-16 07:24:00'
-    //   //to: '2017-12-05 15:04:00'
-    // },
+    daterange: {
+      from: '2018-01-01 00:00:00',
+      to: '	2018-03-05 00:00:00'
+      //to: '2017-12-05 15:04:00'
+    },
 
     simulationBalance: {
       'asset': 0,
@@ -57,8 +57,9 @@ const config = {
       senderpass: '----',
     },
   },
-  candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+  //candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
   //candleValues: [5, 6, 7, 8, 9],
+  candleValues: [1, 2, 3, 4],
   getProperties: () => ({
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
 
@@ -75,8 +76,8 @@ hodl_threshold = 1
 price_buffer_len = 100
 min_predictions = 1000
     */
-    historySize: 1300, // max possible SMA_long
-    min_predictions: 1300,
+    historySize: 1500, // max possible SMA_long
+    min_predictions: 1500,
 
     threshold_buy: randomExt.float(20, 0.5),
     threshold_sell: randomExt.float(20, 0.5) * -1,
