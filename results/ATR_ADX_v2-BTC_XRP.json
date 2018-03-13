@@ -1,0 +1,28 @@
+{
+  "parameters": {
+    "historySize": 40,
+    "ATR": 13,
+    "ADX": 31,
+    "Sell_Offset": "4.3",
+    "Buy_Offset": "9.7",
+    "Sell_ADX_Modifier": "1.35",
+    "Buy_ADX_Modifier": "4.53",
+    "candleSize": 25
+  },
+  "score": 0.9575455438295848,
+  "profit": 342.6671544,
+  "sharpe": 0.47887685151281056,
+  "epochNumber": 18,
+  "otherMetrics": {
+    "balance": 442.6671544,
+    "profit": 342.6671544,
+    "sharpe": 0.47887685151281056,
+    "market": 271.7997707298433,
+    "relativeProfit": 342.6671544,
+    "yearlyProfit": "1313.40559483",
+    "relativeYearlyProfit": "1313.40559483",
+    "startPrice": 0.00002617,
+    "endPrice": 0.0000973,
+    "trades": 17
+  }
+}
