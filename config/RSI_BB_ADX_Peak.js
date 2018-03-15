@@ -4,18 +4,17 @@ const config = {
   stratName: 'RSI_BB_ADX_Peak',
   gekkoConfig: {
     watch: {
-      exchange: 'gdax',
-      currency: 'EUR',
-      asset: 'ETH'
+      exchange: 'binance',
+      currency: 'BTC',
+      asset: 'FUEL'
     },
 
-    daterange: 'scan',
+    // daterange: 'scan',
 
-    // daterange: {
-    //   from: '2017-12-08 06:24:00',
-    //   to: '	2018-02-16 07:24:00'
-    //   //to: '2017-12-05 15:04:00'
-    // },
+    daterange: {
+      from: '2018-02-20 13:40:00',
+      to: '2018-03-13 13:40:00'
+    },
 
     simulationBalance: {
       'asset': 0,

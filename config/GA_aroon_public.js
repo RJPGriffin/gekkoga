@@ -1,20 +1,21 @@
 const randomExt = require('random-ext');
 
 const config = {
-  stratName: 'neuralnet',
+  stratName: 'aroon_public',
   gekkoConfig: {
     watch: {
       exchange: 'binance',
-      currency: 'BTC',
-      asset: 'FUEL'
+      currency: 'ETH',
+      asset: 'ETC'
     },
 
-    // daterange: 'scan',
+    daterange: 'scan',
 
-    daterange: {
-      from: '2018-01-21 00:00:00',
-      to: '	2018-03-11 00:00:00'
-    },
+    // daterange: {
+    //   from: '2017-12-08 06:24:00',
+    //   to: '	2018-02-16 07:24:00'
+    //   //to: '2017-12-05 15:04:00'
+    // },
 
     simulationBalance: {
       'asset': 0,
@@ -22,7 +23,7 @@ const config = {
     },
 
     slippage: 0.05,
-    feeTaker: 0.1,
+    feeTaker: 0.25,
     feeMaker: 0.15,
     feeUsing: 'taker', // maker || taker
 
@@ -56,40 +57,29 @@ const config = {
       senderpass: '----',
     },
   },
-  //candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-  //candleValues: [5, 6, 7, 8, 9],
-  candleValues: [1, 2, 3, 4],
+  candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+  // candleValues: [60, 120, 180, 240, 300, 360, 420, 480, 540],
   getProperties: () => ({
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
 
     /*
-threshold_buy = 1.0
-threshold_sell = -1.0
+    interval =14
+    [parameters]
+    optInTimePeriod = 46
 
-learning_rate = 0.01
-momentum = 0.1
-decay = 0.01
-stoploss_enabled = false
-stoploss_threshold = 0.85
-hodl_threshold = 1
-price_buffer_len = 100
-min_predictions = 1000
+    [thresholds]
+    beardown = 99
+    bearup = 30
+    bulldown = 35
+    bullup = 99
+
     */
-    historySize: 1500, // max possible SMA_long
-    min_predictions: 1500,
+    optInTimePeriod: randomExt.integer(55, 35),
 
-    threshold_buy: randomExt.float(20, 0.5),
-    threshold_sell: randomExt.float(20, 0.5) * -1,
-
-    learning_rate: randomExt.float(0.5, 0.005),
-    momentum: randomExt.float(0.5, 0.05),
-    decay: randomExt.float(0.5, 0.005),
-
-    stoploss_enabled: false,
-    stoploss_threshold: 0.5,
-
-    hodl_threshold: randomExt.float(5, 0.5),
-    price_buffer_len: randomExt.integer(40, 9) * 10,
+    bearup: randomExt.integer(45, 15),
+    beardown: randomExt.integer(100, 90),
+    bulldown: randomExt.integer(45, 15),
+    bullup: randomExt.integer(100, 90),
 
 
     candleSize: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)]

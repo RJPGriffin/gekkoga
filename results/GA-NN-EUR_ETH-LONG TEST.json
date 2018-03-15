@@ -1,0 +1,32 @@
+{
+  "parameters": {
+    "historySize": 1300,
+    "min_predictions": 1300,
+    "threshold_buy": 3.4384197246321038,
+    "threshold_sell": -0.7671895953426892,
+    "learning_rate": 0.042099812930827915,
+    "momentum": 0.3837280817909988,
+    "decay": 0.25703701400064544,
+    "stoploss_enabled": false,
+    "stoploss_threshold": 0.5,
+    "hodl_threshold": 4.7721700056625,
+    "price_buffer_len": 400,
+    "candleSize": 6
+  },
+  "score": 106.39355727479919,
+  "profit": 1375.94204828,
+  "sharpe": 0.07732415577225563,
+  "epochNumber": 80,
+  "otherMetrics": {
+    "balance": 1475.94204828,
+    "profit": 1375.94204828,
+    "sharpe": 0.07732415577225563,
+    "market": 320.33920675773777,
+    "relativeProfit": 1375.94204828,
+    "yearlyProfit": "1745.88753167",
+    "relativeYearlyProfit": "1745.88753167",
+    "startPrice": 151.53,
+    "endPrice": 636.94,
+    "trades": 105
+  }
+}

@@ -220,19 +220,19 @@ class Ga {
         if (populationProfits[i] < 0 && populationSharpes[i] < 0) {
 
           // populationScores[i] = (populationProfits[i] * populationSharpes[i]) * -1;
-          // populationScores[i] = Math.tanh(populationProfits[i] / 3) * Math.tanh(populationSharpes[i] / 0.25) * -1;
-          populationScores[i] = (populationProfits[i] / 10) * Math.tanh(populationSharpes[i]) * -1;
+          populationScores[i] = Math.tanh(populationProfits[i] / 3) * Math.tanh(populationSharpes[i] / 0.25) * -1;
+          // populationScores[i] = (populationProfits[i] / 10) * Math.tanh(populationSharpes[i]) * -1;
 
         } else {
 
           // populationScores[i] = populationProfits[i] * populationSharpes[i];
-          // populationScores[i] = Math.tanh(populationProfits[i] / 3) * Math.tanh(populationSharpes[i] / 0.25);
+          populationScores[i] = Math.tanh(populationProfits[i] / 3) * Math.tanh(populationSharpes[i] / 0.25);
           // populationScores[i] = (populationProfits[i] / 10) * Math.tanh(populationSharpes[i] + 0.3);
-          if (populationSharpes[i] < 0) {
-            populationScores[i] = 0;
-          } else {
-            populationScores[i] = populationProfits[i];
-          }
+          // if (populationSharpes[i] < 0) {
+          //   populationScores[i] = 0;
+          // } else {
+          //   populationScores[i] = populationProfits[i];
+          // }
         }
 
         if (populationScores[i] > maxFitness[2]) {

@@ -5,17 +5,17 @@ const config = {
   gekkoConfig: {
     watch: {
       exchange: 'binance',
-      currency: 'BTC',
-      asset: 'XRP'
+      currency: 'ETH',
+      asset: 'ETC'
     },
 
-    // daterange: 'scan',
+    daterange: 'scan',
 
-    daterange: {
-      from: '2017-11-02 09:00',
-      to: '2018-02-05 16:00'
-      //2017-11-02 08:17	2018-02-05 16:17
-    },
+    // daterange: {
+    //   from: '2017-11-02 09:00',
+    //   to: '2018-02-05 16:00'
+    //   //2017-11-02 08:17	2018-02-05 16:17
+    // },
 
     simulationBalance: {
       'asset': 0,
@@ -23,7 +23,7 @@ const config = {
     },
 
     slippage: 0.05,
-    feeTaker: 0.25,
+    feeTaker: 0.1,
     feeMaker: 0.15,
     feeUsing: 'taker', // maker || taker
 
@@ -57,8 +57,8 @@ const config = {
       senderpass: '----',
     },
   },
-  //candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
-  candleValues: [5, 6, 7, 8, 9, 10],
+  candleValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+  //candleValues: [5, 6, 7, 8, 9, 10],
   getProperties: () => ({
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
 

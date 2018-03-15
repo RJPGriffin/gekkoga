@@ -1,1 +1,28 @@
-{"parameters":{"historySize":40,"ATR":6,"ADX":13,"Sell_Offset":"6.0","Buy_Offset":"6.8","Sell_ADX_Modifier":"1.71","Buy_ADX_Modifier":"1.41","candleSize":9},"score":34.24187412161775,"profit":169.33667402999998,"sharpe":0.2022118027164712,"epochNumber":36,"otherMetrics":{"balance":269.33667403,"profit":169.33667402999998,"sharpe":0.2022118027164712,"market":68.64099511280352,"relativeProfit":169.33667402999998,"yearlyProfit":"637.89205155","relativeYearlyProfit":"637.89205155","startPrice":5929.78,"endPrice":10000.04,"trades":35}}
+{
+  "parameters": {
+    "historySize": 40,
+    "ATR": 6,
+    "ADX": 13,
+    "Sell_Offset": "6.0",
+    "Buy_Offset": "6.8",
+    "Sell_ADX_Modifier": "1.71",
+    "Buy_ADX_Modifier": "1.41",
+    "candleSize": 9
+  },
+  "score": 34.24187412161775,
+  "profit": 169.33667402999998,
+  "sharpe": 0.2022118027164712,
+  "epochNumber": 36,
+  "otherMetrics": {
+    "balance": 269.33667403,
+    "profit": 169.33667402999998,
+    "sharpe": 0.2022118027164712,
+    "market": 68.64099511280352,
+    "relativeProfit": 169.33667402999998,
+    "yearlyProfit": "637.89205155",
+    "relativeYearlyProfit": "637.89205155",
+    "startPrice": 5929.78,
+    "endPrice": 10000.04,
+    "trades": 35
+  }
+}
