@@ -9,7 +9,7 @@ const config = {
       asset: 'ETC'
     },
 
-    daterange: 'scan',
+    //daterange: 'scan',
 
     daterange: {
       from: '2018-02-20 11:51:00',
@@ -96,6 +96,11 @@ const config = {
     BEAR_RSI: randomExt.integer(25, 10),
     BEAR_RSI_high: randomExt.integer(60, 40),
     BEAR_RSI_low: randomExt.integer(45, 10),
+
+    BULL_MOD_high: randomExt.integer(10, 0),
+    BULL_MOD_low: -randomExt.integer(10, 0),
+    BEAR_MOD_high: randomExt.integer(20, 0),
+    BEAR_MOD_low: -randomExt.integer(10, 0),
 
     ADX: randomExt.integer(5, 2),
     ADX_high: randomExt.integer(80, 60),

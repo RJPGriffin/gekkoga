@@ -1,0 +1,41 @@
+/* Epoch number: 73
+Time it took(seconds): 1032.701
+Max score: -247.76139224111753
+Max profit: 1376.936741761819 BTC
+Max sharpe: -0.17993665556785254
+Max profit position: 0
+Max  */
+{
+  "parameters": {
+    "historySize": 1300,
+    "SMA_long": 1000,
+    "SMA_short": 30,
+    "BULL_RSI": 12,
+    "BULL_RSI_high": 89,
+    "BULL_RSI_low": 40,
+    "BEAR_RSI": 20,
+    "BEAR_RSI_high": 54,
+    "BEAR_RSI_low": 21,
+    "BULL_MOD_high": 17,
+    "BULL_MOD_low": -6,
+    "BEAR_MOD_high": 7,
+    "BEAR_MOD_low": -1,
+    "ADX": 2,
+    "ADX_high": 57,
+    "ADX_low": 48,
+    "Stop_Loss_Percent": 18,
+    "candleSize": 1
+  },
+  "OtherMetrics": {
+    "balance": 1476.936741761819,
+    "profit": 1376.936741761819,
+    "sharpe": -0.17993665556785254,
+    "market": 20.05949851253719,
+    "relativeProfit": 1376.936741761819,
+    "yearlyProfit": "2947.16810843",
+    "relativeYearlyProfit": "2947.16810843",
+    "startPrice": 0.00014118,
+    "endPrice": 0.0001695,
+    "trades": 952
+  }
+}
