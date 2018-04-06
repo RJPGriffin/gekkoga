@@ -5,15 +5,15 @@ const config = {
   gekkoConfig: {
     watch: {
       exchange: 'binance',
-      currency: 'USDT',
-      asset: 'ETH'
+      currency: 'ETH',
+      asset: 'IOTA'
     },
 
     // daterange: 'scan',
 
     daterange: {
-      from: '2017-08-17 04:04:00',
-      to: '2017-12-05 15:04:00'
+      from: '2018-02-15 00:00:00',
+      to: '2018-03-22 00:00:00'
     },
 
     simulationBalance: {
@@ -44,7 +44,7 @@ const config = {
   // profit || score
   // score = profit * sharpe -- feedback?
   // profit = recommended!
-  mainObjective: 'profit',
+  mainObjective: 'score',
 
   // optionally recieve and archive new all time high every new all time high
   notifications: {
