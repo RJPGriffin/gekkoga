@@ -1,19 +1,19 @@
 const randomExt = require('random-ext');
 
 const config = {
-  stratName: 'RSI_BB_Adx',
+  stratName: 'RSI_BB_ADX_ReEntry',
   gekkoConfig: {
     watch: {
-      exchange: 'gdax',
-      currency: 'EUR',
-      asset: 'ETH'
+      exchange: 'binance',
+      currency: 'BTC',
+      asset: 'FUEL'
     },
 
     daterange: 'scan',
 
     // daterange: {
-    //   from: '2018-02-03 00:00:00',
-    //   to: '2018-04-03 00:00:00'
+    //   from: '2018-02-20 13:40:00',
+    //   to: '2018-03-13 13:40:00'
     // },
 
     simulationBalance: {
@@ -56,7 +56,7 @@ const config = {
       senderpass: '----',
     },
   },
-  candleValues: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+  candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
   //candleValues: [5, 6, 7, 8, 9],
   getProperties: () => ({
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
@@ -95,32 +95,28 @@ const config = {
     SMA_long: randomExt.integer(27, 6) * 50, // From 1300 to 500 in steps of 50
     SMA_short: randomExt.integer(80, 20),
 
+    // SMA_long: randomExt.integer(20, 10) * 10, // From 1300 to 500 in steps of 50
+    // SMA_short: randomExt.integer(60, 10),
+
     BULL_RSI: randomExt.integer(13, 7),
-    BULL_RSI_high: randomExt.integer(85, 70),
-    BULL_RSI_low: randomExt.integer(65, 40),
+    BULL_RSI_high: randomExt.integer(90, 30),
+    BULL_RSI_low: randomExt.integer(70, 10),
 
     BEAR_RSI: randomExt.integer(20, 10),
-    BEAR_RSI_high: randomExt.integer(60, 40),
-    BEAR_RSI_low: randomExt.integer(30, 10),
+    BEAR_RSI_high: randomExt.integer(90, 30),
+    BEAR_RSI_low: randomExt.integer(60, 5),
 
-    Bull_BB_Time: randomExt.integer(30, 5),
-    Bull_BB_DevUp: randomExt.integer(7, 1),
-    Bull_BB_DevDown: randomExt.integer(7, 1),
-
-    Bear_BB_Time: randomExt.integer(30, 5),
-    Bear_BB_DevUp: randomExt.integer(7, 1),
-    Bear_BB_DevDown: randomExt.integer(7, 1),
-
-    BULL_MOD_high: randomExt.integer(7, 3),
-    BULL_MOD_low: -randomExt.integer(7, 3),
-    BEAR_MOD_high: randomExt.integer(17, 13),
-    BEAR_MOD_low: -randomExt.integer(7, 3),
+    BULL_MOD_high: randomExt.integer(20, 1),
+    BULL_MOD_low: -randomExt.integer(20, 1),
+    BEAR_MOD_high: randomExt.integer(20, 1),
+    BEAR_MOD_low: -randomExt.integer(20, 1),
 
     ADX: randomExt.integer(5, 2),
-    ADX_high: randomExt.integer(80, 60),
-    ADX_low: randomExt.integer(60, 40),
+    ADX_high: randomExt.integer(90, 20),
+    ADX_low: randomExt.integer(90, 20),
 
-    Stop_Loss_Percent: randomExt.integer(100, 0),
+    ReEntry: randomExt.integer(1, 0),
+
 
     candleSize: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)]
 

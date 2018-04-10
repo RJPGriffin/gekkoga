@@ -1,7 +1,7 @@
 const randomExt = require('random-ext');
 
 const config = {
-  stratName: 'RSI_BB_ADX_Peak',
+  stratName: 'STC',
   gekkoConfig: {
     watch: {
       exchange: 'binance',
@@ -9,12 +9,12 @@ const config = {
       asset: 'FUEL'
     },
 
-    // daterange: 'scan',
+    daterange: 'scan',
 
-    daterange: {
-      from: '2018-02-20 13:40:00',
-      to: '2018-03-13 13:40:00'
-    },
+    // daterange: {
+    //   from: '2018-02-20 13:40:00',
+    //   to: '2018-03-13 13:40:00'
+    // },
 
     simulationBalance: {
       'asset': 0,
@@ -22,7 +22,7 @@ const config = {
     },
 
     slippage: 0.05,
-    feeTaker: 0.0,
+    feeTaker: 0.1,
     feeMaker: 0.15,
     feeUsing: 'taker', // maker || taker
 
@@ -62,57 +62,29 @@ const config = {
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
 
     /*
-        # SMA Trends
-        SMA_long = 1000
-        SMA_short = 50
+      [STC]
+      Fast_MA = 23
+      Slow_MA = 50
+      Cycle = 10
 
-        # BULL
-        BULL_RSI = 10
-        BULL_RSI_high = 80
-        BULL_RSI_low = 60
-
-        # BEAR
-        BEAR_RSI = 15
-        BEAR_RSI_high = 50
-        BEAR_RSI_low = 20
-
-        # MODIFY RSI (depending on ADX)
-        BULL_MOD_high = 5
-        BULL_MOD_low = -5
-        BEAR_MOD_high = 15
-        BEAR_MOD_low = -5
-
-        # ADX
-        ADX = 3
-        ADX_high = 70
-        ADX_low = 50
-
-        # Stop Loss
-        Stop_Loss_Percent = 50
+      [thresholds]
+      low = 30
+      high = 70
+      persistence = 1
     */
-    historySize: 1300, // max possible SMA_long
+    historySize: 100, // max possible SMA_long
 
-    SMA_long: randomExt.integer(27, 6) * 50, // From 1300 to 500 in steps of 50
-    SMA_short: randomExt.integer(80, 20),
+    STC: {
+      Fast_MA: randomExt.integer(50, 5), // From 1300 to 500 in steps of 50
+      Slow_MA: randomExt.integer(100, 50),
+      Cycle: randomExt.integer(50, 5),
+    },
 
-    BULL_RSI: randomExt.integer(13, 7),
-    BULL_RSI_high: randomExt.integer(85, 70),
-    BULL_RSI_low: randomExt.integer(65, 40),
+    thresholds: {
+      high: randomExt.integer(90, 40),
+      low: randomExt.integer(60, 5),
+    },
 
-    BEAR_RSI: randomExt.integer(20, 10),
-    BEAR_RSI_high: randomExt.integer(60, 40),
-    BEAR_RSI_low: randomExt.integer(30, 10),
-
-    BULL_MOD_high: randomExt.integer(7, 3),
-    BULL_MOD_low: -randomExt.integer(7, 3),
-    BEAR_MOD_high: randomExt.integer(17, 13),
-    BEAR_MOD_low: -randomExt.integer(7, 3),
-
-    ADX: randomExt.integer(5, 2),
-    ADX_high: randomExt.integer(80, 60),
-    ADX_low: randomExt.integer(60, 40),
-
-    Stop_Loss_Percent: randomExt.integer(100, 0),
 
     candleSize: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)]
 
