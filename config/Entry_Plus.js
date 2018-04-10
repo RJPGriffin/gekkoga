@@ -1,20 +1,20 @@
 const randomExt = require('random-ext');
 
 const config = {
-  stratName: 'RSI_BB_Adx',
+  stratName: 'Entry_Plus',
   gekkoConfig: {
     watch: {
-      exchange: 'gdax',
-      currency: 'EUR',
-      asset: 'ETH'
+      exchange: 'binance',
+      currency: 'BTC',
+      asset: 'FUEL'
     },
 
-    daterange: 'scan',
+    // daterange: 'scan',
 
-    // daterange: {
-    //   from: '2018-02-03 00:00:00',
-    //   to: '2018-04-03 00:00:00'
-    // },
+    daterange: {
+      from: '2018-02-03 00:00:00',
+      to: '2018-04-03 00:00:00'
+    },
 
     simulationBalance: {
       'asset': 0,
@@ -95,20 +95,21 @@ const config = {
     SMA_long: randomExt.integer(27, 6) * 50, // From 1300 to 500 in steps of 50
     SMA_short: randomExt.integer(80, 20),
 
+    takeAt: randomExt.integer(50, 1),
+    stopAt: randomExt.integer(50, 1),
+
+    ATR_Period: randomExt.integer(50, 2),
+
     BULL_RSI: randomExt.integer(13, 7),
-    BULL_RSI_high: randomExt.integer(85, 70),
     BULL_RSI_low: randomExt.integer(65, 40),
 
     BEAR_RSI: randomExt.integer(20, 10),
-    BEAR_RSI_high: randomExt.integer(60, 40),
     BEAR_RSI_low: randomExt.integer(30, 10),
 
     Bull_BB_Time: randomExt.integer(30, 5),
-    Bull_BB_DevUp: randomExt.integer(7, 1),
     Bull_BB_DevDown: randomExt.integer(7, 1),
 
     Bear_BB_Time: randomExt.integer(30, 5),
-    Bear_BB_DevUp: randomExt.integer(7, 1),
     Bear_BB_DevDown: randomExt.integer(7, 1),
 
     BULL_MOD_high: randomExt.integer(7, 3),
@@ -120,7 +121,6 @@ const config = {
     ADX_high: randomExt.integer(80, 60),
     ADX_low: randomExt.integer(60, 40),
 
-    Stop_Loss_Percent: randomExt.integer(100, 0),
 
     candleSize: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)]
 

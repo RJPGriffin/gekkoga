@@ -1,1 +1,44 @@
-{"parameters":{"historySize":1300,"SMA_long":450,"SMA_short":30,"BULL_RSI":13,"BULL_RSI_high":74,"BULL_RSI_low":41,"BEAR_RSI":15,"BEAR_RSI_high":54,"BEAR_RSI_low":28,"Bull_BB_Time":13,"Bull_BB_DevUp":5,"Bull_BB_DevDown":2,"Bear_BB_Time":16,"Bear_BB_DevUp":7,"Bear_BB_DevDown":2,"BULL_MOD_high":4,"BULL_MOD_low":-5,"BEAR_MOD_high":17,"BEAR_MOD_low":-7,"ADX":5,"ADX_high":62,"ADX_low":54,"Stop_Loss_Percent":89,"candleSize":12},"score":-11.571409303126376,"profit":63.98751697,"sharpe":-0.18083854243869993,"epochNumber":169,"otherMetrics":{"balance":163.98751697,"profit":63.98751697,"sharpe":-0.18083854243869993,"market":-47.002262443438916,"relativeProfit":63.98751697,"yearlyProfit":"631.64758559","relativeYearlyProfit":"631.64758559","startPrice":0.00001768,"endPrice":0.00000937,"trades":29}}
+{
+  "parameters": {
+    "historySize": 1300,
+    "SMA_long": 450,
+    "SMA_short": 30,
+    "BULL_RSI": 13,
+    "BULL_RSI_high": 74,
+    "BULL_RSI_low": 41,
+    "BEAR_RSI": 15,
+    "BEAR_RSI_high": 54,
+    "BEAR_RSI_low": 28,
+    "Bull_BB_Time": 13,
+    "Bull_BB_DevUp": 5,
+    "Bull_BB_DevDown": 2,
+    "Bear_BB_Time": 16,
+    "Bear_BB_DevUp": 7,
+    "Bear_BB_DevDown": 2,
+    "BULL_MOD_high": 4,
+    "BULL_MOD_low": -5,
+    "BEAR_MOD_high": 17,
+    "BEAR_MOD_low": -7,
+    "ADX": 5,
+    "ADX_high": 62,
+    "ADX_low": 54,
+    "Stop_Loss_Percent": 89,
+    "candleSize": 12
+  },
+  "score": -11.571409303126376,
+  "profit": 63.98751697,
+  "sharpe": -0.18083854243869993,
+  "epochNumber": 169,
+  "otherMetrics": {
+    "balance": 163.98751697,
+    "profit": 63.98751697,
+    "sharpe": -0.18083854243869993,
+    "market": -47.002262443438916,
+    "relativeProfit": 63.98751697,
+    "yearlyProfit": "631.64758559",
+    "relativeYearlyProfit": "631.64758559",
+    "startPrice": 0.00001768,
+    "endPrice": 0.00000937,
+    "trades": 29
+  }
+}
