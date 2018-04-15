@@ -106,10 +106,10 @@ const config = {
     BEAR_RSI_high: randomExt.integer(90, 30),
     BEAR_RSI_low: randomExt.integer(60, 5),
 
-    BULL_MOD_high: randomExt.integer(20, 1),
-    BULL_MOD_low: -randomExt.integer(20, 1),
-    BEAR_MOD_high: randomExt.integer(20, 1),
-    BEAR_MOD_low: -randomExt.integer(20, 1),
+    BULL_MOD_high: 0,
+    BULL_MOD_low: 0,
+    BEAR_MOD_high: 0,
+    BEAR_MOD_low: 0,
 
     ADX: randomExt.integer(5, 2),
     ADX_high: randomExt.integer(90, 20),
