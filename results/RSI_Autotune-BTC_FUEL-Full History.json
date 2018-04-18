@@ -1,0 +1,30 @@
+{
+  "parameters": {
+    "historySize": 1300,
+    "SMA_long": 600,
+    "SMA_short": 48,
+    "interval": 8,
+    "historyLength": 72,
+    "Threshold_Ema": 60,
+    "BullMarketModifier": 27.4,
+    "BearMarketModifier": 5.1,
+    "persistence": 1,
+    "candleSize": 6
+  },
+  "score": 187.0865431037518,
+  "profit": 463.89874246,
+  "sharpe": 0.40329176602560735,
+  "epochNumber": 13,
+  "otherMetrics": {
+    "balance": 563.89874246,
+    "profit": 463.89874246,
+    "sharpe": 0.40329176602560735,
+    "market": 30.714285714285722,
+    "relativeProfit": 463.89874246,
+    "yearlyProfit": "1190.98887772",
+    "relativeYearlyProfit": "1190.98887772",
+    "startPrice": 0.000007,
+    "endPrice": 0.00000915,
+    "trades": 32
+  }
+}

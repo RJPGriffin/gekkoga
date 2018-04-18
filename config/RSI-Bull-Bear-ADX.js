@@ -6,16 +6,16 @@ const config = {
     watch: {
       exchange: 'binance',
       currency: 'ETH',
-      asset: 'NEO'
+      asset: 'ARK'
     },
 
-    // daterange: 'scan',
+    daterange: 'scan',
 
-    daterange: {
-      from: '2018-02-01 00:00:00',
-      to: '2018-03-20 00:00:00'
-      //to: '2017-12-05 15:04:00'
-    },
+    // daterange: {
+    //   from: '2018-02-01 00:00:00',
+    //   to: '2018-03-20 00:00:00'
+    //   //to: '2017-12-05 15:04:00'
+    // },
 
     simulationBalance: {
       'asset': 0,
@@ -45,7 +45,7 @@ const config = {
   // profit || score
   // score = profit * sharpe -- feedback?
   // profit = recommended!
-  mainObjective: 'score',
+  mainObjective: 'profit',
 
   // optionally recieve and archive new all time high every new all time high
   notifications: {
@@ -58,8 +58,8 @@ const config = {
     },
   },
   //candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
-  //candleValues: [2, 3, 4, 5], //Really doesn't work!
-  candleValues: [5, 10, 15, 30],
+  candleValues: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  // candleValues: [5, 10, 15, 30],
   getProperties: () => ({
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
 
@@ -96,6 +96,11 @@ const config = {
     BEAR_RSI: randomExt.integer(25, 10),
     BEAR_RSI_high: randomExt.integer(85, 30),
     BEAR_RSI_low: randomExt.integer(60, 20),
+
+    BULL_MOD_high: randomExt.integer(10, 0),
+    BULL_MOD_low: -randomExt.integer(10, 0),
+    BEAR_MOD_high: randomExt.integer(10, 0),
+    BEAR_MOD_low: -randomExt.integer(10, 0),
 
     ADX: randomExt.integer(5, 2),
     ADX_high: randomExt.integer(80, 60),

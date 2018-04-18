@@ -9,12 +9,12 @@ const config = {
       asset: 'FUEL'
     },
 
-    daterange: 'scan',
+    // daterange: 'scan',
 
-    // daterange: {
-    //   from: '2018-02-20 13:40:00',
-    //   to: '2018-03-13 13:40:00'
-    // },
+    daterange: {
+      from: '2018-01-20 00:00:00',
+      to: '2018-04-12 09:22:00'
+    },
 
     simulationBalance: {
       'asset': 0,
@@ -44,7 +44,7 @@ const config = {
   // profit || score
   // score = profit * sharpe -- feedback?
   // profit = recommended!
-  mainObjective: 'profit',
+  mainObjective: 'score',
 
   // optionally recieve and archive new all time high every new all time high
   notifications: {
@@ -56,8 +56,8 @@ const config = {
       senderpass: '----',
     },
   },
-  // candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-  candleValues: [3, 4, 5, 6, 7, 8, 9],
+  candleValues: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+  //candleValues: [3, 4, 5, 6, 7, 8, 9],
   getProperties: () => ({
     // Strat settings must be flattened and cannot be nested for mutation to work properly!
 
@@ -85,10 +85,13 @@ const config = {
     interval: randomExt.integer(50, 4),
     historyLength: randomExt.integer(100, 20),
     Threshold_Ema: randomExt.integer(100, 20),
+    Stoploss: randomExt.integer(50, 5),
 
-    BullMarketModifier: randomExt.integer(300, 1) / 10,
-    BearMarketModifier: randomExt.integer(300, 1) / 10,
-    persistence: 1,
+    BullMarketModifierUpper: randomExt.integer(300, 1) / 10,
+    BullMarketModifierLower: randomExt.integer(300, 1) / 10,
+    BearMarketModifierUpper: randomExt.integer(300, 1) / 10,
+    BearMarketModifierLower: randomExt.integer(300, 1) / 10,
+
     candleSize: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)]
 
   })

@@ -1,11 +1,11 @@
 const randomExt = require('random-ext');
 
 const config = {
-  stratName: 'Combination-2',
+  stratName: 'Combination-3',
   gekkoConfig: {
     watch: {
       exchange: 'binance',
-      currency: 'USDT',
+      currency: 'BTC',
       asset: 'NEO'
     },
 
@@ -111,7 +111,8 @@ const config = {
     ADX_low: randomExt.integer(60, 40),
 
     SMA_Timeframe: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)],
-    RSI_Timeframe: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)],
+    BULL_RSI_Timeframe: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)],
+    BEAR_RSI_Timeframe: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)],
     ADX_Timeframe: config.candleValues[randomExt.integer(config.candleValues.length - 1, 0)],
     candleSize: 1
 
