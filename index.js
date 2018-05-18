@@ -233,11 +233,11 @@ class Ga {
 
       } else if (this.mainObjective == 'profit') {
 
-        if (populationProfits[i] > maxFitness[0] && populationSharpes[i] > 0) {
+        //if (populationProfits[i] > maxFitness[0] && populationSharpes[i] > 0) {
 
-          maxFitness = [populationProfits[i], populationSharpes[i], populationScores[i], i];
+        maxFitness = [populationProfits[i], populationSharpes[i], populationScores[i], i];
 
-        }
+        //}
 
       }
 
