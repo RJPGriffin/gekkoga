@@ -6,21 +6,12 @@ const {
   some
 } = require('bluebird');
 const fs = require('fs-extra');
+const flat = require('flat');
+const util = require('util');
 
 class Ga {
 
-  constructor({
-    gekkoConfig,
-    stratName,
-    mainObjective,
-    populationAmt,
-    parallelqueries,
-    variation,
-    mutateElements,
-    notifications,
-    getProperties,
-    apiUrl
-  }, configName) {
+  constructor({ gekkoConfig, stratName, mainObjective, populationAmt, parallelqueries, minSharpe, variation, mutateElements, notifications, getProperties, apiUrl }, configName ) {
     this.configName = configName.replace(/\.js|config\//gi, "");
     this.stratName = stratName;
     this.mainObjective = mainObjective;
@@ -36,47 +27,53 @@ class Ga {
     this.previousBestParams = null;
     this.populationAmt = populationAmt;
     this.parallelqueries = parallelqueries;
+    this.minSharpe = minSharpe;
     this.variation = variation;
     this.mutateElements = mutateElements;
     this.baseConfig = {
-      gekkoConfig: {
-        watch: gekkoConfig.watch,
-        paperTrader: {
-          slippage: gekkoConfig.slippage,
-          feeTaker: gekkoConfig.feeTaker,
-          feeMaker: gekkoConfig.feeMaker,
-          feeUsing: gekkoConfig.feeUsing,
-          simulationBalance: gekkoConfig.simulationBalance,
-          reportRoundtrips: true,
-          enabled: true
-        },
-        writer: {
-          enabled: false,
-          logpath: ''
-        },
-        tradingAdvisor: {
-          enabled: true,
-          method: this.stratName,
-        },
-        trader: {
-          enabled: false,
-        },
-        backtest: {
-          daterange: gekkoConfig.daterange
-        },
-        performanceAnalyzer: {
-          'riskFreeReturn': 5,
-          'enabled': true
-        },
-        valid: true,
+      watch: gekkoConfig.watch,
+      paperTrader: {
+        slippage: gekkoConfig.slippage,
+        feeTaker: gekkoConfig.feeTaker,
+        feeMaker: gekkoConfig.feeMaker,
+        feeUsing: gekkoConfig.feeUsing,
+        simulationBalance: gekkoConfig.simulationBalance,
+        reportRoundtrips: true,
+        enabled: true
       },
-      data: {
-        candleProps: ['close', 'start'],
-        indicatorResults: false,
-        report: true,
-        roundtrips: false,
-        trades: false
-      }
+      writer: {
+        enabled: false,
+        logpath: ''
+      },
+      tradingAdvisor: {
+        enabled: true,
+        method: this.stratName,
+      },
+      trader: {
+        enabled: false,
+      },
+      backtest: {
+        daterange: gekkoConfig.daterange
+      },
+      backtestResultExporter: {
+        enabled: true,
+        writeToDisk: false,
+        data: {
+          stratUpdates: false,
+          roundtrips: false,
+          stratCandles: true,
+          stratCandleProps: [
+              'close',
+              'start'
+          ],
+          trades: false
+        }
+      },
+      performanceAnalyzer: {
+        riskFreeReturn: 5,
+        enabled: true
+      },
+      valid: true
     };
 
 
@@ -120,12 +117,12 @@ class Ga {
   createGene(prop) {
     // Is first generation, and previous props available, load them as a start-point
     if (this.previousBestParams === null || this.runstarted) {
-      let properties = this.getProperties();
-      return prop === 'all' ? properties : properties[prop];
-    } else if (this.previousBestParams.parameters && !this.runstarted) {
+      let properties = flat.flatten(this.getProperties());
+      return prop === 'all' ? flat.unflatten(properties) : properties[prop];
+    } else if ( this.previousBestParams.parameters && !this.runstarted) {
       this.runstarted = 1;
-      let properties = this.previousBestParams.parameters;
-      return prop === 'all' ? properties : properties[prop];
+      let properties = flat.flatten(this.previousBestParams.parameters);
+      return prop === 'all' ? flat.unflatten(properties) : properties[prop];
     } else {
       throw Error('Could not resolve a suitable state for previousBestParams');
     }
@@ -182,29 +179,17 @@ class Ga {
   mutate(a, maxAmount) {
 
     let amt = randomExt.integer(maxAmount, 0);
-    let allProps = Object.keys(a);
-
-    let tmp = {};
-
-    for (let p in a) {
-
-      if (a.hasOwnProperty(p)) {
-
-        tmp[p] = a[p];
-
-      }
-
-    }
+    // flatten, mutate, return unflattened object
+    let flattened = flat.flatten(a);
+    let allProps = Object.keys(flattened);
 
     for (let i = 0; i < amt; i++) {
-
-      let position = randomExt.integer(0, a.length);
+      let position = randomExt.integer(Object.keys(allProps).length - 1, 0);
       let prop = allProps[position];
-      tmp[prop] = this.createGene(prop);
-
+      flattened[prop] = this.createGene(prop);
     }
 
-    return tmp;
+    return flat.unflatten(flattened);
   }
 
   // For the given population and fitness, returns new population and max score
@@ -215,7 +200,17 @@ class Ga {
 
     for (let i = 0; i < this.populationAmt; i++) {
 
-      if (this.mainObjective == 'score') {
+     if (this.mainObjective == 'score') {
+
+       if (populationProfits[i] < 0 && populationSharpes[i] < 0) {
+
+         populationScores[i] = (populationProfits[i] * populationSharpes[i]) * -1;
+
+       } else {
+
+         populationScores[i] = Math.tanh(populationProfits[i] / 3) * Math.tanh(populationSharpes[i] / 0.25);
+
+       }
 
         if (populationProfits[i] < 0 && populationSharpes[i] < 0) {
           populationScores[i] = (populationProfits[i] * populationSharpes[i]) * -1;
@@ -239,6 +234,14 @@ class Ga {
 
         //}
 
+      } else if (this.mainObjective == 'profitForMinSharpe') {
+
+        if (populationProfits[i] > maxFitness[0] && populationSharpes[i] >= this.minSharpe) {
+
+          maxFitness = [populationProfits[i], populationSharpes[i], populationScores[i], i];
+
+        }
+
       }
 
       fitnessSum += populationProfits[i];
@@ -254,11 +257,8 @@ class Ga {
       }
 
     } else {
-
       for (let j = 0; j < this.populationAmt; j++) {
-
         selectionProb[j] = populationProfits[j] / fitnessSum;
-
       }
 
     }
@@ -316,12 +316,12 @@ class Ga {
 
     const conf = Object.assign({}, this.baseConfig);
 
-    conf.gekkoConfig[this.stratName] = Object.keys(data).reduce((acc, key) => {
+    conf[this.stratName] = Object.keys(data).reduce((acc, key) => {
       acc[key] = data[key];
       return acc;
     }, {});
 
-    Object.assign(conf.gekkoConfig.tradingAdvisor, {
+    Object.assign(conf.tradingAdvisor, {
       candleSize: data.candleSize,
       historySize: data.historySize
     });
@@ -342,19 +342,14 @@ class Ga {
         url: `${this.apiUrl}/api/backtest`,
         json: true,
         body: outconfig,
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        timeout: 1200000
+        headers: { 'Content-Type': 'application/json' },
+        timeout: 3600000
       });
 
       // These properties will be outputted every epoch, remove property if not needed
       const properties = ['balance', 'profit', 'sharpe', 'market', 'relativeProfit', 'yearlyProfit', 'relativeYearlyProfit', 'startPrice', 'endPrice', 'trades'];
-      const report = body.report;
-      let result = {
-        profit: 0,
-        metrics: false
-      };
+      const report = body.performanceReport;
+      let result = { profit: 0, metrics: false };
 
       if (report) {
 
@@ -366,11 +361,7 @@ class Ga {
 
         }, {});
 
-        result = {
-          profit: body.report.profit,
-          sharpe: body.report.sharpe,
-          metrics: picked
-        };
+        result = { profit: body.performanceReport.profit, sharpe: body.performanceReport.sharpe, metrics: picked };
 
       }
 
@@ -495,6 +486,17 @@ class Ga {
           allTimeMaximum.epochNumber = epochNumber;
 
         }
+      } else if (this.mainObjective == 'profitForMinSharpe') {
+        if (profit >= allTimeMaximum.profit && sharpe >= this.minSharpe) {
+            this.notifynewhigh = true;
+            allTimeMaximum.parameters = population[position];
+            allTimeMaximum.otherMetrics = otherPopulationMetrics[position];
+            allTimeMaximum.score = score;
+            allTimeMaximum.profit = profit;
+            allTimeMaximum.sharpe = sharpe;
+            allTimeMaximum.epochNumber = epochNumber;
+
+        }
       }
 
       console.log(`
@@ -507,7 +509,7 @@ class Ga {
     Max profit position: ${position}
     Max parameters:
     `,
-        population[position],
+        util.inspect(population[position], false, null),
         `
     Other metrics:
     `,
@@ -529,8 +531,8 @@ class Ga {
     Profit: ${allTimeMaximum.profit} ${this.currency}
     Sharpe: ${allTimeMaximum.sharpe}
     parameters: \n\r`,
-        allTimeMaximum.parameters,
-        `
+    util.inspect(allTimeMaximum.parameters, false, null),
+    `
     Global maximum so far:
     `,
         allTimeMaximum.otherMetrics,
