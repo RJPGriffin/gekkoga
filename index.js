@@ -11,7 +11,19 @@ const util = require('util');
 
 class Ga {
 
-  constructor({ gekkoConfig, stratName, mainObjective, populationAmt, parallelqueries, minSharpe, variation, mutateElements, notifications, getProperties, apiUrl }, configName ) {
+  constructor({
+    gekkoConfig,
+    stratName,
+    mainObjective,
+    populationAmt,
+    parallelqueries,
+    minSharpe,
+    variation,
+    mutateElements,
+    notifications,
+    getProperties,
+    apiUrl
+  }, configName) {
     this.configName = configName.replace(/\.js|config\//gi, "");
     this.stratName = stratName;
     this.mainObjective = mainObjective;
@@ -63,8 +75,8 @@ class Ga {
           roundtrips: false,
           stratCandles: true,
           stratCandleProps: [
-              'close',
-              'start'
+            'close',
+            'start'
           ],
           trades: false
         }
@@ -119,7 +131,7 @@ class Ga {
     if (this.previousBestParams === null || this.runstarted) {
       let properties = flat.flatten(this.getProperties());
       return prop === 'all' ? flat.unflatten(properties) : properties[prop];
-    } else if ( this.previousBestParams.parameters && !this.runstarted) {
+    } else if (this.previousBestParams.parameters && !this.runstarted) {
       this.runstarted = 1;
       let properties = flat.flatten(this.previousBestParams.parameters);
       return prop === 'all' ? flat.unflatten(properties) : properties[prop];
@@ -200,17 +212,17 @@ class Ga {
 
     for (let i = 0; i < this.populationAmt; i++) {
 
-     if (this.mainObjective == 'score') {
+      if (this.mainObjective == 'score') {
 
-       if (populationProfits[i] < 0 && populationSharpes[i] < 0) {
+        if (populationProfits[i] < 0 && populationSharpes[i] < 0) {
 
-         populationScores[i] = (populationProfits[i] * populationSharpes[i]) * -1;
+          populationScores[i] = (populationProfits[i] * populationSharpes[i]) * -1;
 
-       } else {
+        } else {
 
-         populationScores[i] = Math.tanh(populationProfits[i] / 3) * Math.tanh(populationSharpes[i] / 0.25);
+          populationScores[i] = Math.tanh(populationProfits[i] / 3) * Math.tanh(populationSharpes[i] / 0.25);
 
-       }
+        }
 
         if (populationProfits[i] < 0 && populationSharpes[i] < 0) {
           populationScores[i] = (populationProfits[i] * populationSharpes[i]) * -1;
@@ -342,14 +354,19 @@ class Ga {
         url: `${this.apiUrl}/api/backtest`,
         json: true,
         body: outconfig,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         timeout: 3600000
       });
 
       // These properties will be outputted every epoch, remove property if not needed
       const properties = ['balance', 'profit', 'sharpe', 'market', 'relativeProfit', 'yearlyProfit', 'relativeYearlyProfit', 'startPrice', 'endPrice', 'trades'];
       const report = body.performanceReport;
-      let result = { profit: 0, metrics: false };
+      let result = {
+        profit: 0,
+        metrics: false
+      };
 
       if (report) {
 
@@ -361,7 +378,11 @@ class Ga {
 
         }, {});
 
-        result = { profit: body.performanceReport.profit, sharpe: body.performanceReport.sharpe, metrics: picked };
+        result = {
+          profit: body.performanceReport.profit,
+          sharpe: body.performanceReport.sharpe,
+          metrics: picked
+        };
 
       }
 
@@ -488,13 +509,13 @@ class Ga {
         }
       } else if (this.mainObjective == 'profitForMinSharpe') {
         if (profit >= allTimeMaximum.profit && sharpe >= this.minSharpe) {
-            this.notifynewhigh = true;
-            allTimeMaximum.parameters = population[position];
-            allTimeMaximum.otherMetrics = otherPopulationMetrics[position];
-            allTimeMaximum.score = score;
-            allTimeMaximum.profit = profit;
-            allTimeMaximum.sharpe = sharpe;
-            allTimeMaximum.epochNumber = epochNumber;
+          this.notifynewhigh = true;
+          allTimeMaximum.parameters = population[position];
+          allTimeMaximum.otherMetrics = otherPopulationMetrics[position];
+          allTimeMaximum.score = score;
+          allTimeMaximum.profit = profit;
+          allTimeMaximum.sharpe = sharpe;
+          allTimeMaximum.epochNumber = epochNumber;
 
         }
       }
@@ -531,8 +552,8 @@ class Ga {
     Profit: ${allTimeMaximum.profit} ${this.currency}
     Sharpe: ${allTimeMaximum.sharpe}
     parameters: \n\r`,
-    util.inspect(allTimeMaximum.parameters, false, null),
-    `
+        util.inspect(allTimeMaximum.parameters, false, null),
+        `
     Global maximum so far:
     `,
         allTimeMaximum.otherMetrics,
